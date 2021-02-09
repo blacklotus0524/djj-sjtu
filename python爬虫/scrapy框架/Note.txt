@@ -1,0 +1,55 @@
+scrapy框架
+- 什么是框架
+    - 集成了很多功能且有很强的通用性
+- 什么是学习框架
+    - 专门学习框架封装的各种功能的详细用法
+-scrapy
+    - 爬虫中封装好的一个框架
+        - 功能：高性能持久化存储，异步数据下载，数据解析，分布式
+-scrapy 使用：
+    - 环境安装：
+        - mac or linux pip install scrapy
+        - windows:
+            -比较复杂
+    - 创建一个工程：scrapy startproject xxxxpro
+    - 在spiders子目录中创建一个爬虫文件
+        -scrapy genspider spiderName www.xxx.com
+    - 执行工程：
+        - scrapy crawl spiderName --nolog
+        LOG_LEVEL="ERROR"
+- 持久化存储
+    - 基于终端的指令
+        - 只可以将parse方法的返回值存储到本地的文本文件中
+        - 持久化存储对应的文本文件的类型：json csv xml等
+        - 指令 scrapy crawl spider -o path
+
+    - 基于管道的指令:
+        - 编码流程：
+            - 数据解析
+            - 在item中定义相关属性
+            - 解析完后封装到item类型对象
+            - 将item对象提交给管道，进行持久化储存操作
+            - 在管道类中的process_item中将接收到的item对象存储的数据进行持久化存储操作
+            - 在配置文件中开启管道
+        - 将爬取到的数据一份到本地，一份到数据库
+            - 建两个管道类
+            - 爬虫文件的item只被优先级最高的管道类接收
+            - process_item 中 retrun item 传到下一个即将被执行的管道类中
+- 基于spider的全站数据爬取
+    — 就是将网站中的某板块下的全部页码对应的页码进行爬取
+    - 实现方式：
+        - 将所有页码的url 添加到start_urls
+        - 手动进行请求发送：
+            - yield scrapy.Request(url,callback):callback专门用于数据解析
+
+- 五大核心组件
+    - spider
+    - 引擎：数据流处理 触发事务
+    - 调度器： 过滤器 队列
+    - 下载器
+    - 管道
+- 请求传参
+    - 使用场景：如果爬取解析的数据不在同一张页面中
+    - yield scrapy.Request(url=,callback=，meta={"item":item})
+
+- 图片数据爬取 Imagespipeline
