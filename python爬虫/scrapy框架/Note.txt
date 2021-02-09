@@ -53,3 +53,25 @@ scrapy框架
     - yield scrapy.Request(url=,callback=，meta={"item":item})
 
 - 图片数据爬取 Imagespipeline
+    - xpath解析出src属性值。单独对图片地址发起请求图片二进制数据类型
+    - Imagespipeline：
+        - 只需要将img的src属性值进行解析，提交到管道；
+        - 使用流程：
+            - 数据解析获取图片地址
+            - 创建item，提交到管道类 yield item
+            - 在管道类中导入ImagesPipeLine类，自定一个基于此的子类
+            - 在配置文件中：
+                - 指定储存目录： IMAGES_STORE=""
+                - 指定开启的管道：自定制的管道类
+- 中间件
+    - 下载中间件
+        - 位置 引擎和下载器之间
+        - 作用 批量拦截整个工程所有的请求和响应
+        - 拦截请求：
+            - UA伪装：process_request
+            - 代理ip设定: process_exception
+        - 拦截响应：
+            - 篡改响应数据和响应对象
+            - 解析出需要拦截的url，通过selenuim获取动态加载页面
+Crawlspider
+    - 全站数据爬取

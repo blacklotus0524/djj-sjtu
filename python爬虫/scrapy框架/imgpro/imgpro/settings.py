@@ -1,4 +1,4 @@
-# Scrapy settings for test_1 project
+# Scrapy settings for imgpro project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,19 +7,18 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'test_1'
+BOT_NAME = 'imgpro'
 
-SPIDER_MODULES = ['test_1.spiders']
-NEWSPIDER_MODULE = 'test_1.spiders'
+SPIDER_MODULES = ['imgpro.spiders']
+NEWSPIDER_MODULE = 'imgpro.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'test_1 (+http://www.yourdomain.com)'
+#USER_AGENT = 'imgpro (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
-
-LOG_LEVEL = "ERROR"
+LOG_LEVEL="ERROR"
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -46,13 +45,13 @@ LOG_LEVEL = "ERROR"
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'test_1.middlewares.Test1SpiderMiddleware': 543,
+#    'imgpro.middlewares.ImgproSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'test_1.middlewares.Test1DownloaderMiddleware': 543,
+#    'imgpro.middlewares.ImgproDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -63,9 +62,9 @@ LOG_LEVEL = "ERROR"
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'test_1.pipelines.Test1Pipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'imgpro.pipelines.ImgPipeLine': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -87,3 +86,4 @@ LOG_LEVEL = "ERROR"
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+IMAGES_STORE="./imgs_d"
